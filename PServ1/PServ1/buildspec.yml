@@ -13,13 +13,15 @@ phases:
       - dotnet restore PServ1.csproj
       - dotnet tool update -g Amazon.Lambda.Tools
       - echo Dependencies install completed `date`
-      - echo Starting unit tests `date` in `pwd`
-      - dotnet test PServ1.Tests/PServ1.Tests.csproj
-      - echo unit tests completed `date`
   build:
     commands:
+      - echo Starting unit tests `date` in `pwd`
+      - cd ..
+      - dotnet test PServ1.Tests/PServ1.Tests.csproj
+      - echo unit tests completed `date`
+
       - echo Starting build `date` in `pwd`
-      #- cd PServ1/PServ1
+      - cd PServ1
       - dotnet-lambda package-ci --s3-bucket pserv31 --output-template updated-serverless.template
       - echo build completed `date`
   #post_build:
