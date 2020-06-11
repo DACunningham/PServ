@@ -10,7 +10,7 @@ phases:
     commands:
       - echo Installing dependencies - `pwd`
       - dotnet restore PServ1/PServ1/PServ1.csproj
-      #- dotnet tool update -g Amazon.Lambda.Tools
+      - dotnet tool update -g Amazon.Lambda.Tools
       - echo Dependencies install completed `date`
   build:
     commands:
