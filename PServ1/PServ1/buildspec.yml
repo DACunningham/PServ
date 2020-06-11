@@ -15,11 +15,13 @@ phases:
   build:
     commands:
       - echo Starting build `date` in `pwd`
-      
-      - dotnet lambda package --configuration release --framework netcoreapp3.1 --output-package bin/release/netcoreapp3.1/deploy-package.zip
-      - aws cloudformation package --template serverless.template --s3-bucket pserv31 --output-template template-export.yml
+      - cd PServ1/PServ1
+      - dotnet-lambda package-ci --s3-bucket pserv31 --output-template updated-serverless.template
+      #- dotnet-lambda package-ci --configuration release --framework netcoreapp3.1 --output-package bin/release/netcoreapp3.1/deploy-package.zip
+      #- aws cloudformation package --template serverless.template --s3-bucket pserv31 --output-template template-export.yml
 artifacts:
   files:
     #- bin/release/netcoreapp3.1/deploy-package.zip
-    - template-export.yml
-  discard-paths: yes
+    #- template-export.yml
+    - PServ1/PServ1/updated-serverless.template
+  - discard-paths: yes
