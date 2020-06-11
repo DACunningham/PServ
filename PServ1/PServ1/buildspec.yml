@@ -23,5 +23,5 @@ artifacts:
   files:
     #- bin/release/netcoreapp3.1/deploy-package.zip
     #- template-export.yml
-    - PServ1/PServ1/updated-serverless.template
+    - updated-serverless.template
   - discard-paths: yes
