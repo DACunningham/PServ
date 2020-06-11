@@ -14,7 +14,7 @@ phases:
       - dotnet tool update -g Amazon.Lambda.Tools
       - echo Dependencies install completed `date`
       - echo Starting unit tests `date` in `pwd`
-      - dotnet test
+      - dotnet test PServ1.Tests/PServ1.Tests.csproj
       - echo unit tests completed `date`
   build:
     commands:
