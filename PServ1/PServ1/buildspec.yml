@@ -21,7 +21,5 @@ phases:
       #- aws cloudformation package --template serverless.template --s3-bucket pserv31 --output-template template-export.yml
 artifacts:
   files:
-    #- bin/release/netcoreapp3.1/deploy-package.zip
-    #- template-export.yml
-    - updated-serverless.template
-  - discard-paths: yes
+    ./PServ1/PServ1/updated-serverless.template
+  discard-paths: yes
