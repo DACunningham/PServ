@@ -1,0 +1,25 @@
+﻿version: 0.2
+
+phases:
+  #install:
+    #runtime-versions:
+      #dotnet: 3.1
+    #commands:
+      #- echo Nothing to do in install
+    pre_build:
+      commands:
+        - echo Installing dependencies - `pwd`
+        - dotnet restore
+        - dotnet tool update -g Amazon.Lambda.Tools
+        - echo Dependencies install completed `date`
+  build:
+    commands:
+      - echo Starting build `date` in `pwd`
+      
+      - dotnet lambda package --configuration release --framework netcoreapp3.1 --output-package bin/release/netcoreapp3.1/deploy-package.zip
+      - aws cloudformation package --template serverless.template --s3-bucket pserv31 --output-template template-export.yml
+artifacts:
+  files:
+    #- bin/release/netcoreapp3.1/deploy-package.zip
+    - template-export.yml
+  discard-paths: yes
