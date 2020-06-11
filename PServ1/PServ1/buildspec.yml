@@ -6,12 +6,12 @@ phases:
       #dotnet: 3.1
     #commands:
       #- echo Nothing to do in install
-    pre_build:
-      commands:
-        - echo Installing dependencies - `pwd`
-        - dotnet restore
-        - dotnet tool update -g Amazon.Lambda.Tools
-        - echo Dependencies install completed `date`
+  pre_build:
+    commands:
+      - echo Installing dependencies - `pwd`
+      - dotnet restore PServ1/PServ1/PServ1.csproj
+      - dotnet tool update -g Amazon.Lambda.Tools
+      - echo Dependencies install completed `date`
   build:
     commands:
       - echo Starting build `date` in `pwd`
