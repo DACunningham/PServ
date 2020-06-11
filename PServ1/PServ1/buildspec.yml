@@ -9,16 +9,21 @@ phases:
   pre_build:
     commands:
       - echo Installing dependencies - `pwd`
-      - dotnet restore PServ1/PServ1/PServ1.csproj
+      - cd PServ1/PServ1
+      - dotnet restore PServ1.csproj
       - dotnet tool update -g Amazon.Lambda.Tools
       - echo Dependencies install completed `date`
   build:
     commands:
       - echo Starting build `date` in `pwd`
-      - cd PServ1/PServ1
+      #- cd PServ1/PServ1
       - dotnet-lambda package-ci --s3-bucket pserv31 --output-template updated-serverless.template
-      #- dotnet-lambda package-ci --configuration release --framework netcoreapp3.1 --output-package bin/release/netcoreapp3.1/deploy-package.zip
-      #- aws cloudformation package --template serverless.template --s3-bucket pserv31 --output-template template-export.yml
+      - echo build completed `date`
+  post_build:
+    commands:
+      - echo Starting unit tests `date` in `pwd`
+      - dotnet test
+      - echo unit tests completed `date`
 artifacts:
   files:
     ./PServ1/PServ1/updated-serverless.template
