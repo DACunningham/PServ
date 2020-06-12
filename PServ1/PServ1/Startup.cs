@@ -10,6 +10,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using PServ1.Repositories;
 
 namespace PServ1
 {
@@ -31,6 +32,10 @@ namespace PServ1
 
             // Add S3 to the ASP.NET Core dependency injection framework.
             services.AddAWSService<Amazon.S3.IAmazonS3>();
+
+            // Add custom services to the DI framework.
+            services.AddTransient<IUserRepository, UserRepository>();
+            services.AddTransient<IDBConnection, DBConnection>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline
