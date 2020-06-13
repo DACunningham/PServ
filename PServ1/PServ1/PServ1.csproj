@@ -5,6 +5,8 @@
     <AWSProjectType>Lambda</AWSProjectType>
   </PropertyGroup>
   <ItemGroup>
+    <PackageReference Include="Amazon.AspNetCore.Identity.Cognito" Version="1.0.4" />
+    <PackageReference Include="Amazon.Extensions.CognitoAuthentication" Version="1.0.3" />
     <PackageReference Include="AWSSDK.DynamoDBv2" Version="3.3.106.18" />
     <PackageReference Include="AWSSDK.S3" Version="3.3.111.11" />
     <PackageReference Include="AWSSDK.Extensions.NETCore.Setup" Version="3.3.101" />
