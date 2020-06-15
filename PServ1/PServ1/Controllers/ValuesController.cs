@@ -2,7 +2,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Amazon.AspNetCore.Identity.Cognito;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Amazon.AspNetCore.Identity.Cognito;
 
 namespace PServ1.Controllers
 {
@@ -10,6 +14,7 @@ namespace PServ1.Controllers
     public class ValuesController : ControllerBase
     {
         // GET api/values
+        [Authorize(Policy = "OfficeNumberUnder200")]
         [HttpGet]
         public IEnumerable<string> Get()
         {
@@ -17,6 +22,7 @@ namespace PServ1.Controllers
         }
 
         // GET api/values/5
+        [Authorize]
         [HttpGet("{id}")]
         public string Get(int id)
         {
